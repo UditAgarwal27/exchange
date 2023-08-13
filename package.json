@@ -7,6 +7,10 @@
   "author": "uditagarwal <uditagarwal>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "start:local": "nest start --watch",
+    "build": "nest build"
+  },
   "dependencies": {
     "@nestjs/common": "10.1.3",
     "@nestjs/config": "3.0.0",
@@ -15,6 +19,7 @@
     "@nestjs/platform-express": "10.1.3",
     "@nestjs/swagger": "7.1.8",
     "axios": "1.4.0",
+    "class-transformer": "0.5.1",
     "class-validator": "0.14.0",
     "cross-env": "7.0.3",
     "dotenv": "16.0.3",
