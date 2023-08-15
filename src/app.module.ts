@@ -2,6 +2,7 @@ import {Module} from "@nestjs/common";
 import { ConfigModule } from '@nestjs/config';
 import {join} from "path";
 import {DatabaseModule} from "src/infrastructure";
+import {UserModule} from "src/service/user/user.module";
 @Module({
   imports: [
     ConfigModule.forRoot(
@@ -10,8 +11,8 @@ import {DatabaseModule} from "src/infrastructure";
       } : {},
     ),
     DatabaseModule,
+    UserModule,
   ],
   providers: [],
-  exports: []
 })
 export class AppModule {}

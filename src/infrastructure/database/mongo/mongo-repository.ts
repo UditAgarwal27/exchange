@@ -23,7 +23,7 @@ export class MongoRepository<T> {
     return this._repository.findById(id, projection).exec();
   }
 
-  create(item: T): Promise<T> {
+  create(item) {
     return this._repository.create(item);
   }
 
