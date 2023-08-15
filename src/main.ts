@@ -1,3 +1,4 @@
+import * as process from "process";
 process.env.NODE_ENV = process.env.NODE_ENV || 'local';
 import 'source-map-support';
 
@@ -12,7 +13,7 @@ import helmet from 'helmet';
 import { ValidationPipe } from '@nestjs/common';
 
 dotenv.config({
-  path: join(__dirname, `../../${process.env.NODE_ENV ?? 'local'}.env`),
+  path: join(__dirname, `../${process.env.NODE_ENV ?? 'local'}.env`),
 });
 
 process.on('unhandledRejection', (error: any) => {
@@ -35,9 +36,7 @@ process.on('unhandledRejection', (error: any) => {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
-
   const configService: ConfigService = app.get(ConfigService);
-
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'local') {
     process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
   }
@@ -47,7 +46,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.setGlobalPrefix('/api');
   await app.listen(configService.get<number>('PORT'));
-  console.log('Server Started On PORT 3000')
+  console.log(`Server Started On PORT ${configService.get<number>('PORT')}`)
 }
 
 bootstrap();
